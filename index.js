@@ -7,18 +7,25 @@ function newImage(url, left, bottom){
     document.body.append(object)
     return object
 }
-
+// below allows items to be "picked up" with a click
 function newItem(url, left, bottom){
     let item = newImage(url, left, bottom)
     item.addEventListener('click', function(){
-        console.log(item)           
+        item.remove()
+        let inventoryItem = document.createElement('img')
+        inventoryItem.src = url
+        inventory.append(inventoryItem)
     })
 }
 
-    
+//previously the variable "inventory" was inside the scope
+//of the "newInventory" function.
+//it was moved outside of "newInventory()" so it can be
+//accessed by "newItem()"
+let inventory = document.createElement('div')  
 
 function newInventory(){
-    let inventory = document.createElement('div')
+    
     inventory.style.position = 'fixed'
     inventory.style.bottom = '0px';
     inventory.style.left = '0px'
